@@ -3,7 +3,7 @@ var karma = require('gulp-karma');
 var jshint = require('gulp-jshint');
 
 var paths = {
-	karmaConf  : './test/karma.conf.js',
+	karmaConf  : './tests/karma.conf.js',
 	app : './source/ngBooleanSearch.js',
 	specs : './test/*.js'
 }
@@ -39,7 +39,7 @@ gulp.task('lint',function(){
 		   .on('error', handleError);
 });
 
-gulp.task('karma-single',function(){
+gulp.task('test',function(){
 	return runKarma(paths.karmaConf,{
 			action: 'run',
 	      autoWatch : false,
@@ -47,7 +47,7 @@ gulp.task('karma-single',function(){
 });
 
 gulp.task('watch', function(){
-	gulp.watch([paths.app, paths.specs],['lint', 'karma-single']);
+	gulp.watch([paths.app, paths.specs],['lint', 'test']);
 });
 
-gulp.task('default',['lint', 'karma-single', 'watch']);
+gulp.task('default',['lint', 'test', 'watch']);
