@@ -1,25 +1,31 @@
 {
-  "name": "boolean-search",
-  "version": "0.0.1",
-  "description": "A javascript library for evaluating boolean search terms.",
-  "main": "source/boolean-search.js",
-  "repository": {
-    "type": "git",
-    "url": "git://github.com/artemgrygor/boolean-search"
-  },
-  "keywords": [
-    "utils",
-    "boolean",
-    "search",
-    "underscore",
-    "expression",
-    "strings"
-  ],
-  "author": "Artem Grygor",
-  "license": "Apache License, Version 2.0",
-  "bugs": {
-    "url": "https://github.com/artemgrygor/boolean-search/issues"
-  },
-  "readmeFilename": "README.md",
-  "homepage": "https://github.com/artemgrygor/boolean-search"
+    "name": "boolean-search",
+    "version": "0.0.1",
+    "description": "A javascript library for evaluating boolean search terms.",
+    "main": "source/boolean-search.js",
+    "repository": {
+        "type": "git",
+        "url": "git://github.com/artemgrygor/boolean-search"
+    },
+    "keywords": [
+        "angularjs",
+        "utils",
+        "boolean",
+        "search",
+        "underscore",
+        "expression",
+        "string"
+    ],
+    "author": "Artem Grygor",
+    "license": "Apache License, Version 2.0",
+    "bugs": {
+        "url": "https://github.com/artemgrygor/boolean-search/issues"
+    },
+    "readmeFilename": "README.md",
+    "homepage": "https://github.com/artemgrygor/boolean-search",
+    "devDependencies": {
+        "gulp": "~3.5.6",
+        "gulp-karma": "0.0.4",
+        "gulp-jshint": "~1.5.1"
+    }
 }
