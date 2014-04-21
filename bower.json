@@ -1,12 +1,11 @@
 {
     "name": "boolean-search",
     "version": "0.0.1",
+    "authors": [
+      "Artem Grygor"
+    ],
     "description": "A javascript library for evaluating boolean search terms.",
     "main": "./source/ngBooleanSearch",
-    "repository": {
-        "type": "git",
-        "url": "git://github.com/artemgrygor/boolean-search"
-    },
     "keywords": [
         "angularjs",
         "utils",
@@ -16,16 +15,17 @@
         "expression",
         "string"
     ],
-    "author": "Artem Grygor",
     "license": "Apache License, Version 2.0",
-    "bugs": {
-        "url": "https://github.com/artemgrygor/boolean-search/issues"
-    },
-    "readmeFilename": "README.md",
     "homepage": "https://github.com/artemgrygor/boolean-search",
-    "devDependencies": {
-        "gulp": "~3.5.6",
-        "gulp-karma": "0.0.4",
-        "gulp-jshint": "~1.5.1"
-    }
+    "dependencies": {
+      "angular": ">=1.2.*"
+    },
+    "ignore": [
+      "**/.*",
+      "gulpfile.js",
+      "package.json",
+      "node_modules",
+      "bower_components",
+      "tests"
+    ]
 }
