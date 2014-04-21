@@ -28,7 +28,7 @@ var handleError = function (err) {
   this.emit('end');
 };
 
-gulp.task('karma', function  (argument) {
+gulp.task('chrome', function  (argument) {
 	return runKarma(paths.karmaConf,{action: 'watch', browsers: ['Chrome'], singleRun: false, autoWatch: true});
 });
 
