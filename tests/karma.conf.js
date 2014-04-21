@@ -16,7 +16,7 @@ module.exports = function (config) {
             'bower_components/angular/angular.js',
             'bower_components/angular-mocks/angular-mocks.js',
             'source/index.js',
-            'specs/*.js'
+            'tests/unit/*.js'
         ],
     
         // enable / disable colors in the output (reporters and logs)
