@@ -2,13 +2,13 @@
 
 describe('Tests functionality of the ngBooleanSearch module', function() {
 
-	// var engine;
+	var engine;
 
-	// beforeEach(mocks.module('ngBooleanSearch'));
+	beforeEach(mocks.module('ngBooleanSearch'));
 
-	// beforeEach(inject(function (ngBooleanSearch) {
- //        engine = ngBooleanSearch;
- //    }));
+	beforeEach(inject(function (ngBooleanSearch) {
+        engine = ngBooleanSearch;
+    }));
 
     it('Should be defined', function(){
         // expect(engine).to.not.be.undefined;

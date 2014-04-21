@@ -5,7 +5,7 @@ var jshint = require('gulp-jshint');
 var paths = {
 	karmaConf  : './tests/karma.conf.js',
 	app : './source/ngBooleanSearch.js',
-	specs : './test/*.js'
+	specs : './tests/unit/*.js'
 }
 
 function runKarma(karmaConf, options){
@@ -21,7 +21,6 @@ function runKarma(karmaConf, options){
     return gulp.src(['no need to supply files because everything is in config file'])
 	    .pipe(karma(config).on('error', handleError));
 }
-
 
 var handleError = function (err) {
   console.log(err.name, ' in ', err.plugin, ': ', err.message);
