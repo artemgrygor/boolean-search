@@ -1,4 +1,4 @@
 boolean-search
 ==============
 
-A javascript/node.js library for evaluating boolean search terms.
+A javascript library for evaluating boolean search terms.
