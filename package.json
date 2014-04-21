@@ -24,7 +24,7 @@
     "readmeFilename": "README.md",
     "homepage": "https://github.com/artemgrygor/boolean-search",
     "devDependencies": {
-        "gulp": "~3.5.6",
+        "gulp": "~3.6.0",
         "gulp-karma": "0.0.4",
         "gulp-jshint": "~1.5.1"
     }

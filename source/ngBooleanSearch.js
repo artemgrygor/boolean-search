@@ -1,7 +1,7 @@
 (function (window, angular, undefined) {
 	'use strict';
 
-	var module angular.module('ngBooleanSearch', []);
+	var module = angular.module('ngBooleanSearch', []);
 	module.provider('ngBooleanSearch', function(){
 
 		this.$get = ['$document', '$templateCache', '$compile', '$q', '$http', '$rootScope', '$timeout',

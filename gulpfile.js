@@ -4,7 +4,7 @@ var jshint = require('gulp-jshint');
 
 var paths = {
 	karmaConf  : './test/karma.conf.js',
-	app : './source/boolean-search.js',
+	app : './source/ngBooleanSearch.js',
 	specs : './test/*.js'
 }
 
