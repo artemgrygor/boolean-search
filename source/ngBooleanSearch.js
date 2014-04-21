@@ -9,7 +9,7 @@
 
 				var publicMethods = {
 
-					test: function(){
+					testMyPlease: function(){
 						return 42;
 					}
 				};
