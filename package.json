@@ -2,7 +2,7 @@
   "name": "boolean-search",
   "version": "0.0.1",
   "description": "A javascript library for evaluating boolean search terms.",
-  "main": "boolean-search.js",
+  "main": "source/boolean-search.js",
   "repository": {
     "type": "git",
     "url": "git://github.com/artemgrygor/boolean-search"
@@ -20,5 +20,6 @@
   "bugs": {
     "url": "https://github.com/artemgrygor/boolean-search/issues"
   },
+  "readmeFilename": "README.md",
   "homepage": "https://github.com/artemgrygor/boolean-search"
 }
