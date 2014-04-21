@@ -1,31 +1,34 @@
 {
-    "name": "boolean-search",
-    "version": "0.0.1",
-    "authors": [
-      "Artem Grygor"
-    ],
-    "description": "A javascript library for evaluating boolean search terms.",
-    "main": "./source/ngBooleanSearch",
-    "keywords": [
-        "angularjs",
-        "utils",
-        "boolean",
-        "search",
-        "underscore",
-        "expression",
-        "string"
-    ],
-    "license": "Apache License, Version 2.0",
-    "homepage": "https://github.com/artemgrygor/boolean-search",
-    "dependencies": {
-      "angular": ">=1.2.*"
-    },
-    "ignore": [
-      "**/.*",
-      "gulpfile.js",
-      "package.json",
-      "node_modules",
-      "bower_components",
-      "tests"
-    ]
+  "name": "boolean-search",
+  "version": "0.0.1",
+  "authors": [
+    "Artem Grygor"
+  ],
+  "description": "A javascript library for evaluating boolean search terms.",
+  "main": "./source/ngBooleanSearch",
+  "keywords": [
+    "angularjs",
+    "utils",
+    "boolean",
+    "search",
+    "underscore",
+    "expression",
+    "string"
+  ],
+  "license": "Apache License, Version 2.0",
+  "homepage": "https://github.com/artemgrygor/boolean-search",
+  "dependencies": {
+    "angular": ">=1.2.*"
+  },
+  "ignore": [
+    "**/.*",
+    "gulpfile.js",
+    "package.json",
+    "node_modules",
+    "bower_components",
+    "tests"
+  ],
+  "devDependencies": {
+    "angular-mocks": "~1.2.16"
+  }
 }

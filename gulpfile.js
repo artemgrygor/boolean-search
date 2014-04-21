@@ -11,7 +11,7 @@ var paths = {
 function runKarma(karmaConf, options){
 	var config = {
 		configFile: karmaConf,
-	      action: 'watch'
+	    action: 'watch'
 	};
 
 	Object.keys(options).forEach(function(key) {
@@ -29,7 +29,7 @@ var handleError = function (err) {
 };
 
 gulp.task('karma', function  (argument) {
-	return runKarma(paths.karmaConf,{action: 'watch'});
+	return runKarma(paths.karmaConf,{action: 'watch', browsers: ['Chrome'], singleRun: false, autoWatch: true});
 });
 
 gulp.task('lint',function(){
@@ -41,9 +41,9 @@ gulp.task('lint',function(){
 
 gulp.task('test',function(){
 	return runKarma(paths.karmaConf,{
-			action: 'run',
-	      autoWatch : false,
-	      singleRun : true});
+		action: 'run',
+	    autoWatch : false,
+	    singleRun : true});
 });
 
 gulp.task('watch', function(){
