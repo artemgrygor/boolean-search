@@ -5,6 +5,9 @@
 A javascript library for evaluating boolean search terms provider for [Angular.js](http://angularjs.org/) applications.
 ngBooleanSearch is small (~7Kb), has minimalistic API and has only [Angular.js](http://angularjs.org/) as a dependency.
 
+> You can use following strings to filter objects (where title is a property of object):
+> search me title: awesome and cool or great
+
 ## Install
 You can download all necessary ngBooleanSearch files manually or install it with bower:
 
