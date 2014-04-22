@@ -32,7 +32,7 @@
 	"bitwise": true,
 	"boss": false,
 	"browser": true,
-	"curly": true,
+	"curly": false,
 	"debug": false,
 	"devel": false,
 	"eqeqeq": true,
