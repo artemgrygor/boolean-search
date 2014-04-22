@@ -15,6 +15,23 @@ bower install ngBooleanSearch
 ## Usage
 You need only to include ``ngBooleanSearch.js`` to your project and then you can start using ``ngBooleanSearch`` provider in your directives, controllers and services.
 
+Register ngBooleanSearch module at your application
+
+```javascript
+var app = angular.module('exampleApp', ['ngBooleanSearch']);
+
+app.controller('MainCtrl', function ($scope, ngBooleanSearch) {
+});
+```
+and then at your filter function
+
+```javascript
+$scope.searchTextFn = function(actual, search){
+
+	return ngBooleanSearch.filterBookmark(item, search);
+};
+```
+
 ## API
 
 ngBooleanSearch service provides easy to use and minimalistic API, but in the same time it's powerful enough. Here is the list of accessible methods that you can use:
