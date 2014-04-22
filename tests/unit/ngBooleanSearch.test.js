@@ -14,13 +14,6 @@ describe('Tests functionality of the ngBooleanSearch module', function() {
         expect(engine).to.not.be.undefined;
     });
 
-    it('Should have a testMyPlease function with 42 as a result', function(){
-        expect(engine.testMyPlease).to.be.a('function');
-        expect(engine.testMyPlease()).to.equal(42);
-    });
-
-    // -------------
-
     it('Should have a filterBookmark function', function(){
         expect(engine).to.not.be.undefined;
         expect(engine.filterBookmark).to.be.a('function');

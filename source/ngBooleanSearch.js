@@ -120,102 +120,99 @@
 				    return result;
 				};
 
-				var publicMethods = {
+				// Generate expression tree from search string.
+				var generateExpressionTree = function(searchText, callback){
 
-					testMyPlease: function(){
-						return 42;
-					},
+			        if(isBlank(searchText)) return exTree;
 
-					generateExpressionTree: function(searchText, callback){
+			        var searchWords = searchText.split(/(tag:|title:|url:)/);
+			        if(searchWords.length === 0)
+			            return exTree;
 
-				        if(isBlank(searchText)) return exTree;
+			        exTree = [];
+			        var node = { pattern: nonePattern, literals:[] };
+			        var literal = { text: '', expression: nonePattern};
+			        
+			        angular.forEach(searchWords, function(word){
+			            if(isBlank(word)) return;
 
-				        var searchWords = searchText.split(/(tag:|title:|url:)/);
-				        if(searchWords.length === 0)
-				            return exTree;
+			            if(word === andExpression){
+			                
+			                literal.expression = andExpression;
+			                return;
+			            }
+			            
+			            var pattern = find(patterns, function(it){ return word.indexOf(it) !== -1; });
+			            if(angular.isDefined(pattern)){
+			                // flush node
+			                if(node.literals.length !== 0) exTree.push(node);
 
-				        exTree = [];
-				        var node = { pattern: nonePattern, literals:[] };
-				        var literal = { text: '', expression: nonePattern};
-				        
-				        angular.forEach(searchWords, function(word){
-				            if(isBlank(word)) return;
+			                // create a new node
+			                node = {                    
+			                    pattern: pattern,
+			                    literals:[]
+			                };
 
-				            if(word === andExpression){
-				                
-				                literal.expression = andExpression;
-				                return;
-				            }
-				            
-				            var pattern = find(patterns, function(it){ return word.indexOf(it) !== -1; });
-				            if(angular.isDefined(pattern)){
-				                // flush node
-				                if(node.literals.length !== 0) exTree.push(node);
+			                return;
+			            }
 
-				                // create a new node
-				                node = {                    
-				                    pattern: pattern,
-				                    literals:[]
-				                };
+			            var exps = word.toLowerCase().split(/(and|or)/);
+			            angular.forEach(exps, function(item){
+			                if(isBlank(word)) return;
 
-				                return;
-				            }
+			                if(item === andExpression){
+			                    if(isBlank(literal.text)) return;
 
-				            var exps = word.toLowerCase().split(/(and|or)/);
-				            angular.forEach(exps, function(item){
-				                if(isBlank(word)) return;
+			                    literal.expression = andExpression;
+			                    node.literals.push(literal);
 
-				                if(item === andExpression){
-				                    if(isBlank(literal.text)) return;
+			                    literal = null;
+			                }
+			                else if(item === orExpression){
+			                    if(isBlank(literal.text)) return;
 
-				                    literal.expression = andExpression;
-				                    node.literals.push(literal);
+			                    literal.expression = orExpression;
+			                    node.literals.push(literal);
 
-				                    literal = null;
-				                }
-				                else if(item === orExpression){
-				                    if(isBlank(literal.text)) return;
+			                    literal = null;
+			                }
+			                else{
+			                    literal = {
+			                        expression: nonePattern,
+			                        text: trim(item)
+			                    };
+			                }
+			            });
 
-				                    literal.expression = orExpression;
-				                    node.literals.push(literal);
+			            if(!isBlank(literal.text)) node.literals.push(literal);
+			        });
 
-				                    literal = null;
-				                }
-				                else{
-				                    literal = {
-				                        expression: nonePattern,
-				                        text: trim(item)
-				                    };
-				                }
-				            });
+			        exTree.push(node);
 
-				            if(!isBlank(literal.text)) node.literals.push(literal);
-				        });
+			        return exTree;
+			    };
 
-				        exTree.push(node);
-
-				        return exTree;
-				    },
-
-					// Check that bookmark could be reached by following search text.
-					filterBookmark: function(bookmark, searchText){
+			    // Check that bookmark could be reached by following search text.
+				var	filterBookmark = function(bookmark, searchText){
 					    
-					    if(!searchText) return true;
+				    if(!searchText) return true;
 
-					    if(this.search !== searchText){
-					        this.search = searchText;
-					        this.generateExpressionTree(this.search);
-					    }
-					    
-					    var failureNode = find(exTree, function(node){
-					        return !evaluateExpression(bookmark, node);
-					    });
+				    if(this.search !== searchText){
+				        this.search = searchText;
+				        this.generateExpressionTree(this.search);
+				    }
+				    
+				    var failureNode = find(exTree, function(node){
+				        return !evaluateExpression(bookmark, node);
+				    });
 
-					    return !angular.isDefined(failureNode);
-					}
+				    return !angular.isDefined(failureNode);
 				};
 
-				return publicMethods;
+				return {
+					generateExpressionTree: generateExpressionTree,
+					filterBookmark: filterBookmark
+				};
 			}];
 
 	});	
