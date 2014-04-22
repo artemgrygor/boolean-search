@@ -31,6 +31,7 @@
 				    return (/^\s*$/).test(str);
 				};
 
+				// Get all property values from object.
 				var values = function (obj) {
 				    var vals = [];
 				    for( var key in obj ) {
