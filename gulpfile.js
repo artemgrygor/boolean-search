@@ -50,3 +50,11 @@ gulp.task('watch', function(){
 });
 
 gulp.task('default',['lint', 'test', 'watch']);
+
+gulp.task('ci', ['lint', 'test']);
+
+
+
+
+
+
