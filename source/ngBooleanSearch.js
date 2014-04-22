@@ -122,7 +122,7 @@
 				};
 
 				// Generate expression tree from search string.
-				var generateExpressionTree = function(searchText, callback){
+				var generateExpressionTree = function(searchText){
 
 			        if(isBlank(searchText)) return exTree;
 
