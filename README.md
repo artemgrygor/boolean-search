@@ -19,11 +19,11 @@ You need only to include ``ngBooleanSearch.js`` to your project and then you can
 
 ngBooleanSearch service provides easy to use and minimalistic API, but in the same time it's powerful enough. Here is the list of accessible methods that you can use:
 
-### ``.generateExpressionTree(searchText)``
+#### ``.generateExpressionTree(searchText)``
 
 Method allows to generate expression tree by a search string and allows not to create a new instance on each call. It accepts ``searchText`` string as the only argument.
 
-### ``.filterBookmark(bookmark, searchText)``
+##### ``.filterBookmark(bookmark, searchText)``
 
 Method allows to filter object by search text with boolean expression. It accepts ``bookmark`` object as the first argument and ``searchText`` string as the second one.
 
