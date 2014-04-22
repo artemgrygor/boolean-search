@@ -1,6 +1,6 @@
 {
     "name": "boolean-search",
-    "version": "0.0.1",
+    "version": "1.0.0",
     "description": "A javascript library for evaluating boolean search terms.",
     "main": "./source/ngBooleanSearch",
     "repository": {
