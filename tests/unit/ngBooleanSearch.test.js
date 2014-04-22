@@ -2,11 +2,11 @@
 
 describe('Tests functionality of the ngBooleanSearch module', function() {
 
-	var engine;
+    var engine;
 
-	beforeEach(module('ngBooleanSearch'));
+    beforeEach(module('ngBooleanSearch'));
 
-	beforeEach(inject(function (ngBooleanSearch) {
+    beforeEach(inject(function (ngBooleanSearch) {
         engine = ngBooleanSearch;
     }));
 
@@ -180,439 +180,439 @@ describe('Tests functionality of the ngBooleanSearch module', function() {
         });
     });
 
-	describe('When search "string" - will try to find a match in any object field.', function(){   
-	    var bookmark, searchText;
-	    
-	    beforeEach(function(){
-	        
-	        searchText = 'string';
-	        bookmark = {
-	            title: 'asdf QstringQ',
-	            url: 'http://127:0:0:1'
-	        };
-	    });
-
-	    it('When title contains string - result should be true', function(){            
-	        
-	        var isFiltered = engine.filterBookmark(bookmark, searchText);
-	        expect(isFiltered).to.be.true;
-	    });
-
-	    it('When title does not contain - result should be false', function(){
-	        
-	        searchText = 'notString';
-	        var isFiltered = engine.filterBookmark(bookmark, searchText);
-	        expect(isFiltered).to.be.false;
-	    });
-
-	    it('When url contains string - result should be true', function(){          
-	        
-	        searchText = ':0:0';
-	        var isFiltered = engine.filterBookmark(bookmark, searchText);
-	        expect(isFiltered).to.be.true;
-	    });
-
-	    it('When url does not contain - result should be false', function(){
-	        
-	        searchText = ':1:0';
-	        var isFiltered = engine.filterBookmark(bookmark, searchText);
-	        expect(isFiltered).to.be.false;
-	    });
-	});
-
-	describe('When search "tag:string" - will try to find a match only in object tag property.', function(){
-	    var bookmark, searchText;
-	    
-	    beforeEach(function(){
-	        
-	        searchText = 'tag:tag2';
-	        bookmark = {
-	            title: 'title',
-	            url: 'http://127:0:0:1',
-	            tag:[{text: 'tag1'}, {text: 'tag2'}, {text: 'tag2'}]
-	        };
-	    });
-
-	    it('When tag contains string - result should be true', function(){
-	        var isFiltered = engine.filterBookmark(bookmark, searchText);
-	        expect(isFiltered).to.be.true;
-	    });
-
-	    it('When tag does not contain - result should be false', function(){
-	        
-	        searchText = 'tag:tag4';
-	        var isFiltered = engine.filterBookmark(bookmark, searchText);
-	        expect(isFiltered).to.be.false;
-	    });
-	});
-
-	describe('When search "string1 tag:string2" - will try to find a match for search2 in object "tag" property an search1 title field.', function(){
-	    var bookmark, searchText;
-	    
-	    beforeEach(function(){
-	        
-	        searchText = 'itl tag:tag2';
-	        bookmark = {
-	            title: 'title',
-	            url: 'http://127:0:0:1',
-	            tag:[{text: 'tag1'}, {text: 'tag2'}, {text: 'tag2'}]
-	        };
-	    });
-
-	    it('When title contains - result should be true', function(){
-	        
-	        var isFiltered = engine.filterBookmark(bookmark, searchText);
-	        expect(isFiltered).to.be.true;
-	    });
-
-	    it('When title does not contan and tag contains - result should be false', function(){
-
-	        searchText = 'nottitle tag:tag2';
-	        var isFiltered = engine.filterBookmark(bookmark, searchText);
-	        expect(isFiltered).to.be.false;
-	    });
-
-	    it('When title contans and tag does not - result should be false', function(){
-
-	        searchText = 'tl tag:tag4';
-	        var isFiltered = engine.filterBookmark(bookmark, searchText);
-	        expect(isFiltered).to.be.false;
-	    });
-	});
-
-	describe('When search pattern contains whitespace - will try to find a match the same as without it', function(){
-	    var bookmark, searchText;
-	    
-	    beforeEach(function(){
-	        
-	        searchText = 'tag: tag2';
-	        bookmark = {
-	            title: 'title',
-	            url: 'http://127:0:0:1',
-	            tag:[{text: 'tag1'}, {text: 'tag2'}, {text: 'tag2'}]
-	        };
-	    });
-
-	    it('When tag pattern contains whitespace - result should be true', function(){
-
-	        var isFiltered = engine.filterBookmark(bookmark, searchText);
-	        expect(isFiltered).to.be.true;
-	    });
-
-	    it('When title pattern contains whitespace - result should be true', function(){
-
-	        searchText = 'title: itl';
-	        var isFiltered = engine.filterBookmark(bookmark, searchText);
-	        expect(isFiltered).to.be.true;
-	    });
-
-	    it('When url pattern contains whitespace - result should be true', function(){
-
-	        searchText = 'url: 127';
-	        var isFiltered = engine.filterBookmark(bookmark, searchText);
-	        expect(isFiltered).to.be.true;
-	    });
-	});
-
-	describe('When search title pattern contains AND expression - will try to find both of the search', function(){
-	    var bookmark, searchText;
-	    
-	    beforeEach(function(){
-
-	        searchText = 'title: ti AND le';
-	        bookmark = {
-	            title: 'title',
-	            url: 'http://127:0:0:1',
-	            tag:[{text: 'tag1'}, {text: 'tag2'}, {text: 'tag3'}]
-	        };
-	    });
-
-	    it('When pattern contains both items - result should be true', function(){
-
-	        var isFiltered = engine.filterBookmark(bookmark, searchText);
-	        expect(isFiltered).to.be.true;
-	    });
+    describe('When search "string" - will try to find a match in any object field.', function(){   
+        var bookmark, searchText;
+        
+        beforeEach(function(){
+            
+            searchText = 'string';
+            bookmark = {
+                title: 'asdf QstringQ',
+                url: 'http://127:0:0:1'
+            };
+        });
+
+        it('When title contains string - result should be true', function(){            
+            
+            var isFiltered = engine.filterBookmark(bookmark, searchText);
+            expect(isFiltered).to.be.true;
+        });
+
+        it('When title does not contain - result should be false', function(){
+            
+            searchText = 'notString';
+            var isFiltered = engine.filterBookmark(bookmark, searchText);
+            expect(isFiltered).to.be.false;
+        });
+
+        it('When url contains string - result should be true', function(){          
+            
+            searchText = ':0:0';
+            var isFiltered = engine.filterBookmark(bookmark, searchText);
+            expect(isFiltered).to.be.true;
+        });
+
+        it('When url does not contain - result should be false', function(){
+            
+            searchText = ':1:0';
+            var isFiltered = engine.filterBookmark(bookmark, searchText);
+            expect(isFiltered).to.be.false;
+        });
+    });
+
+    describe('When search "tag:string" - will try to find a match only in object tag property.', function(){
+        var bookmark, searchText;
+        
+        beforeEach(function(){
+            
+            searchText = 'tag:tag2';
+            bookmark = {
+                title: 'title',
+                url: 'http://127:0:0:1',
+                tag:[{text: 'tag1'}, {text: 'tag2'}, {text: 'tag2'}]
+            };
+        });
+
+        it('When tag contains string - result should be true', function(){
+            var isFiltered = engine.filterBookmark(bookmark, searchText);
+            expect(isFiltered).to.be.true;
+        });
+
+        it('When tag does not contain - result should be false', function(){
+            
+            searchText = 'tag:tag4';
+            var isFiltered = engine.filterBookmark(bookmark, searchText);
+            expect(isFiltered).to.be.false;
+        });
+    });
+
+    describe('When search "string1 tag:string2" - will try to find a match for search2 in object "tag" property an search1 title field.', function(){
+        var bookmark, searchText;
+        
+        beforeEach(function(){
+            
+            searchText = 'itl tag:tag2';
+            bookmark = {
+                title: 'title',
+                url: 'http://127:0:0:1',
+                tag:[{text: 'tag1'}, {text: 'tag2'}, {text: 'tag2'}]
+            };
+        });
+
+        it('When title contains - result should be true', function(){
+            
+            var isFiltered = engine.filterBookmark(bookmark, searchText);
+            expect(isFiltered).to.be.true;
+        });
+
+        it('When title does not contan and tag contains - result should be false', function(){
+
+            searchText = 'nottitle tag:tag2';
+            var isFiltered = engine.filterBookmark(bookmark, searchText);
+            expect(isFiltered).to.be.false;
+        });
+
+        it('When title contans and tag does not - result should be false', function(){
+
+            searchText = 'tl tag:tag4';
+            var isFiltered = engine.filterBookmark(bookmark, searchText);
+            expect(isFiltered).to.be.false;
+        });
+    });
+
+    describe('When search pattern contains whitespace - will try to find a match the same as without it', function(){
+        var bookmark, searchText;
+        
+        beforeEach(function(){
+            
+            searchText = 'tag: tag2';
+            bookmark = {
+                title: 'title',
+                url: 'http://127:0:0:1',
+                tag:[{text: 'tag1'}, {text: 'tag2'}, {text: 'tag2'}]
+            };
+        });
+
+        it('When tag pattern contains whitespace - result should be true', function(){
+
+            var isFiltered = engine.filterBookmark(bookmark, searchText);
+            expect(isFiltered).to.be.true;
+        });
+
+        it('When title pattern contains whitespace - result should be true', function(){
+
+            searchText = 'title: itl';
+            var isFiltered = engine.filterBookmark(bookmark, searchText);
+            expect(isFiltered).to.be.true;
+        });
+
+        it('When url pattern contains whitespace - result should be true', function(){
+
+            searchText = 'url: 127';
+            var isFiltered = engine.filterBookmark(bookmark, searchText);
+            expect(isFiltered).to.be.true;
+        });
+    });
+
+    describe('When search title pattern contains AND expression - will try to find both of the search', function(){
+        var bookmark, searchText;
+        
+        beforeEach(function(){
+
+            searchText = 'title: ti AND le';
+            bookmark = {
+                title: 'title',
+                url: 'http://127:0:0:1',
+                tag:[{text: 'tag1'}, {text: 'tag2'}, {text: 'tag3'}]
+            };
+        });
+
+        it('When pattern contains both items - result should be true', function(){
+
+            var isFiltered = engine.filterBookmark(bookmark, searchText);
+            expect(isFiltered).to.be.true;
+        });
 
-	    it('When pattern does not contain first item - result should be false', function(){
-
-	        searchText = 'title: notitle AND le';
-	        var isFiltered = engine.filterBookmark(bookmark, searchText);
-	        expect(isFiltered).to.be.false;
-	    });
-
-	    it('When pattern does not contain second item - result should be false', function(){
-
-	        searchText = 'title: le AND notitle';
-	        var isFiltered = engine.filterBookmark(bookmark, searchText);
-	        expect(isFiltered).to.be.false;
-	    });
-
-	    it('When pattern contains only first item without whitespace - result should be true', function(){
-
-	        searchText = 'title: le AND';
-	        var isFiltered = engine.filterBookmark(bookmark, searchText);
-	        expect(isFiltered).to.be.true;
-	    });
-
-	    it('When pattern contains only first item with whitespace - result should be true', function(){
-
-	        searchText = 'title: le AND ';
-	        var isFiltered = engine.filterBookmark(bookmark, searchText);
-	        expect(isFiltered).to.be.true;
-	    });
-
-	    it('When search contains text and pattern with AND expression - result should be true', function(){
-
-	        searchText = 'http title: tit AND itle';
-	        var isFiltered = engine.filterBookmark(bookmark, searchText);
-	        expect(isFiltered).to.be.true;
-	    });
-	});
-
-	describe('When search title pattern contains OR expression - will try to find one of the search', function(){
-	    var bookmark, searchText;
-	    
-	    beforeEach(function(){
-
-	        searchText = 'title: ti OR le';
-	        bookmark = {
-	            title: 'title',
-	            url: 'http://127:0:0:1',
-	            tag:[{text: 'tag1'}, {text: 'tag2'}, {text: 'tag3'}]
-	        };
-	    });
-
-	    it('When pattern contains both items - result should be true', function(){
-
-	        var isFiltered = engine.filterBookmark(bookmark, searchText);
-	        expect(isFiltered).to.be.true;
-	    });
-
-	    it('When pattern does not contain first item - result should be true', function(){
-
-	        searchText = 'title: notitle OR le';
-	        var isFiltered = engine.filterBookmark(bookmark, searchText);
-	        expect(isFiltered).to.be.true;
-	    });
-
-	    it('When pattern does not contain second item - result should be true', function(){
-
-	        searchText = 'title: le OR notitle';
-	        var isFiltered = engine.filterBookmark(bookmark, searchText);
-	        expect(isFiltered).to.be.true;
-	    });
-
-	    it('When pattern does not contain both items - result should be false', function(){
-
-	        searchText = 'title: notit AND notitle';
-	        var isFiltered = engine.filterBookmark(bookmark, searchText);
-	        expect(isFiltered).to.be.false;
-	    });
-
-	    it('When pattern contains only first item without whitespace - result should be true', function(){
-
-	        searchText = 'title: le OR';
-	        var isFiltered = engine.filterBookmark(bookmark, searchText);
-	        expect(isFiltered).to.be.true;
-	    });
-
-	    it('When pattern contains only first item with whitespace - result should be true', function(){
-
-	        searchText = 'title: le OR ';
-	        var isFiltered = engine.filterBookmark(bookmark, searchText);
-	        expect(isFiltered).to.be.true;
-	    });
-
-	    it('When search contains text and pattern with OR expression - result should be true', function(){
-
-	        searchText = 'http title: tit OR itle';
-	        var isFiltered = engine.filterBookmark(bookmark, searchText);
-	        expect(isFiltered).to.be.true;
-	    });
-
-	    it('When search does not contain text and pattern with OR expression - result should be false', function(){
-
-	        searchText = 'http nottitle: tit OR itle';
-	        var isFiltered = engine.filterBookmark(bookmark, searchText);
-	        expect(isFiltered).to.be.false;
-	    });
-	});
-
-	describe('When search url pattern contains AND expression - will try to find both of the search', function(){
-	    var bookmark, searchText;
-	    
-	    beforeEach(function(){
-
-	        searchText = 'url: 27 AND 0:1';
-	        bookmark = {
-	            title: 'title',
-	            url: 'http://127:0:0:1',
-	            tag:[{text: 'tag1'}, {text: 'tag2'}, {text: 'tag3'}]
-	        };
-	    });
-
-	    it('When pattern contains both items - result should be true', function(){
-
-	        var isFiltered = engine.filterBookmark(bookmark, searchText);
-	        expect(isFiltered).to.be.true;
-	    });
-
-	    it('When pattern does not contain first item - result should be false', function(){
-
-	        searchText = 'url: noturl AND 27';
-	        var isFiltered = engine.filterBookmark(bookmark, searchText);
-	        expect(isFiltered).to.be.false;
-	    });
-
-	    it('When pattern does not contain second item - result should be false', function(){
-
-	        searchText = 'url: 27 AND noturl';
-	        var isFiltered = engine.filterBookmark(bookmark, searchText);
-	        expect(isFiltered).to.be.false;
-	    });
-
-	    it('When search contains text and pattern with AND expression - result should be true', function(){
-
-	        searchText = 'titl url: 27 AND 0:1';
-	        var isFiltered = engine.filterBookmark(bookmark, searchText);
-	        expect(isFiltered).to.be.true;
-	    });
-	});
-
-	describe('When search url pattern contains OR expression - will try to find one of the search', function(){
-	    var bookmark, searchText;
-	    
-	    beforeEach(function(){
-
-	        searchText = 'url: 27 OR 0:1';
-	        bookmark = {
-	            title: 'title',
-	            url: 'http://127:0:0:1',
-	            tag:[{text: 'tag1'}, {text: 'tag2'}, {text: 'tag3'}]
-	        };
-	    });
-
-	    it('When pattern contains both items - result should be true', function(){
-
-	        var isFiltered = engine.filterBookmark(bookmark, searchText);
-	        expect(isFiltered).to.be.true;
-	    });
-
-	    it('When pattern does not contain first item - result should be true', function(){
-
-	        searchText = 'url: noturl OR 27';
-	        var isFiltered = engine.filterBookmark(bookmark, searchText);
-	        expect(isFiltered).to.be.true;
-	    });
-
-	    it('When pattern does not contain second item - result should be true', function(){
-
-	        searchText = 'url: 27 OR noturl';
-	        var isFiltered = engine.filterBookmark(bookmark, searchText);
-	        expect(isFiltered).to.be.true;
-	    });
-
-	    it('When search contains text and pattern with OR expression - result should be true', function(){
-
-	        searchText = 'titl url: 27 OR 0:1';
-	        var isFiltered = engine.filterBookmark(bookmark, searchText);
-	        expect(isFiltered).to.be.true;
-	    });
-
-	    it('When search does not contain text and pattern with OR expression - result should be false', function(){
-
-	        searchText = 'nottitl url: 27 OR 0:1';
-	        var isFiltered = engine.filterBookmark(bookmark, searchText);
-	        expect(isFiltered).to.be.false;
-	    });
-	});
-
-	describe('When search tag pattern contains AND expression - will try to find both of the search', function(){
-	    var bookmark, searchText;
-	    
-	    beforeEach(function(){
-
-	        searchText = 'tag: tag2 AND tag1';
-	        bookmark = {
-	            title: 'title',
-	            url: 'http://127:0:0:1',
-	            tag:[{text: 'tag1'}, {text: 'tag2'}, {text: 'tag3'}]
-	        };
-	    });
-
-	    it('When pattern contains both items - result should be true', function(){
-
-	        var isFiltered = engine.filterBookmark(bookmark, searchText);
-	        expect(isFiltered).to.be.true;
-	    });
-
-	    it('When pattern does not contain first item - result should be false', function(){
-
-	        searchText = 'tag: nottag AND tag2';
-	        var isFiltered = engine.filterBookmark(bookmark, searchText);
-	        expect(isFiltered).to.be.false;
-	    });
-
-	    it('When pattern does not contain second item - result should be false', function(){
-
-	        searchText = 'tag: tag2 AND nottag';
-	        var isFiltered = engine.filterBookmark(bookmark, searchText);
-	        expect(isFiltered).to.be.false;
-	    });
-
-	    it('When search contains text and pattern with AND expression - result should be true', function(){
-
-	        searchText = 'titl tag: tag2 AND tag1';
-	        var isFiltered = engine.filterBookmark(bookmark, searchText);
-	        expect(isFiltered).to.be.true;
-	    });
-	});
-
-	describe('When search tag pattern contains OR expression - will try to find one of the search', function(){
-	    var bookmark, searchText;
-	    
-	    beforeEach(function(){
-
-	        searchText = 'tag: tag2 OR tag1';
-	        bookmark = {
-	            title: 'title',
-	            url: 'http://127:0:0:1',
-	            tag:[{text: 'tag1'}, {text: 'tag2'}, {text: 'tag3'}]
-	        };
-	    });
-
-	    it('When pattern contains both items - result should be true', function(){
-
-	        var isFiltered = engine.filterBookmark(bookmark, searchText);
-	        expect(isFiltered).to.be.true;
-	    });
-
-	    it('When pattern does not contain first item - result should be true', function(){
-
-	        searchText = 'tag: nottag OR tag2';
-	        var isFiltered = engine.filterBookmark(bookmark, searchText);
-	        expect(isFiltered).to.be.true;
-	    });
-
-	    it('When pattern does not contain second item - result should be true', function(){
-
-	        searchText = 'tag: tag2 OR nottag';
-	        var isFiltered = engine.filterBookmark(bookmark, searchText);
-	        expect(isFiltered).to.be.true;
-	    });
-
-	    it('When search contains text and pattern with OR expression - result should be true', function(){
-
-	        searchText = 'titl tag: tag2 OR tag1';
-	        var isFiltered = engine.filterBookmark(bookmark, searchText);
-	        expect(isFiltered).to.be.true;
-	    });
-
-	    it('When search does not contain text and pattern with OR expression - result should be false', function(){
-
-	        searchText = 'nottitl tag: tag2 OR tag1';
-	        var isFiltered = engine.filterBookmark(bookmark, searchText);
-	        expect(isFiltered).to.be.false;
-	    });
-	});
+        it('When pattern does not contain first item - result should be false', function(){
+
+            searchText = 'title: notitle AND le';
+            var isFiltered = engine.filterBookmark(bookmark, searchText);
+            expect(isFiltered).to.be.false;
+        });
+
+        it('When pattern does not contain second item - result should be false', function(){
+
+            searchText = 'title: le AND notitle';
+            var isFiltered = engine.filterBookmark(bookmark, searchText);
+            expect(isFiltered).to.be.false;
+        });
+
+        it('When pattern contains only first item without whitespace - result should be true', function(){
+
+            searchText = 'title: le AND';
+            var isFiltered = engine.filterBookmark(bookmark, searchText);
+            expect(isFiltered).to.be.true;
+        });
+
+        it('When pattern contains only first item with whitespace - result should be true', function(){
+
+            searchText = 'title: le AND ';
+            var isFiltered = engine.filterBookmark(bookmark, searchText);
+            expect(isFiltered).to.be.true;
+        });
+
+        it('When search contains text and pattern with AND expression - result should be true', function(){
+
+            searchText = 'http title: tit AND itle';
+            var isFiltered = engine.filterBookmark(bookmark, searchText);
+            expect(isFiltered).to.be.true;
+        });
+    });
+
+    describe('When search title pattern contains OR expression - will try to find one of the search', function(){
+        var bookmark, searchText;
+        
+        beforeEach(function(){
+
+            searchText = 'title: ti OR le';
+            bookmark = {
+                title: 'title',
+                url: 'http://127:0:0:1',
+                tag:[{text: 'tag1'}, {text: 'tag2'}, {text: 'tag3'}]
+            };
+        });
+
+        it('When pattern contains both items - result should be true', function(){
+
+            var isFiltered = engine.filterBookmark(bookmark, searchText);
+            expect(isFiltered).to.be.true;
+        });
+
+        it('When pattern does not contain first item - result should be true', function(){
+
+            searchText = 'title: notitle OR le';
+            var isFiltered = engine.filterBookmark(bookmark, searchText);
+            expect(isFiltered).to.be.true;
+        });
+
+        it('When pattern does not contain second item - result should be true', function(){
+
+            searchText = 'title: le OR notitle';
+            var isFiltered = engine.filterBookmark(bookmark, searchText);
+            expect(isFiltered).to.be.true;
+        });
+
+        it('When pattern does not contain both items - result should be false', function(){
+
+            searchText = 'title: notit AND notitle';
+            var isFiltered = engine.filterBookmark(bookmark, searchText);
+            expect(isFiltered).to.be.false;
+        });
+
+        it('When pattern contains only first item without whitespace - result should be true', function(){
+
+            searchText = 'title: le OR';
+            var isFiltered = engine.filterBookmark(bookmark, searchText);
+            expect(isFiltered).to.be.true;
+        });
+
+        it('When pattern contains only first item with whitespace - result should be true', function(){
+
+            searchText = 'title: le OR ';
+            var isFiltered = engine.filterBookmark(bookmark, searchText);
+            expect(isFiltered).to.be.true;
+        });
+
+        it('When search contains text and pattern with OR expression - result should be true', function(){
+
+            searchText = 'http title: tit OR itle';
+            var isFiltered = engine.filterBookmark(bookmark, searchText);
+            expect(isFiltered).to.be.true;
+        });
+
+        it('When search does not contain text and pattern with OR expression - result should be false', function(){
+
+            searchText = 'http nottitle: tit OR itle';
+            var isFiltered = engine.filterBookmark(bookmark, searchText);
+            expect(isFiltered).to.be.false;
+        });
+    });
+
+    describe('When search url pattern contains AND expression - will try to find both of the search', function(){
+        var bookmark, searchText;
+        
+        beforeEach(function(){
+
+            searchText = 'url: 27 AND 0:1';
+            bookmark = {
+                title: 'title',
+                url: 'http://127:0:0:1',
+                tag:[{text: 'tag1'}, {text: 'tag2'}, {text: 'tag3'}]
+            };
+        });
+
+        it('When pattern contains both items - result should be true', function(){
+
+            var isFiltered = engine.filterBookmark(bookmark, searchText);
+            expect(isFiltered).to.be.true;
+        });
+
+        it('When pattern does not contain first item - result should be false', function(){
+
+            searchText = 'url: noturl AND 27';
+            var isFiltered = engine.filterBookmark(bookmark, searchText);
+            expect(isFiltered).to.be.false;
+        });
+
+        it('When pattern does not contain second item - result should be false', function(){
+
+            searchText = 'url: 27 AND noturl';
+            var isFiltered = engine.filterBookmark(bookmark, searchText);
+            expect(isFiltered).to.be.false;
+        });
+
+        it('When search contains text and pattern with AND expression - result should be true', function(){
+
+            searchText = 'titl url: 27 AND 0:1';
+            var isFiltered = engine.filterBookmark(bookmark, searchText);
+            expect(isFiltered).to.be.true;
+        });
+    });
+
+    describe('When search url pattern contains OR expression - will try to find one of the search', function(){
+        var bookmark, searchText;
+        
+        beforeEach(function(){
+
+            searchText = 'url: 27 OR 0:1';
+            bookmark = {
+                title: 'title',
+                url: 'http://127:0:0:1',
+                tag:[{text: 'tag1'}, {text: 'tag2'}, {text: 'tag3'}]
+            };
+        });
+
+        it('When pattern contains both items - result should be true', function(){
+
+            var isFiltered = engine.filterBookmark(bookmark, searchText);
+            expect(isFiltered).to.be.true;
+        });
+
+        it('When pattern does not contain first item - result should be true', function(){
+
+            searchText = 'url: noturl OR 27';
+            var isFiltered = engine.filterBookmark(bookmark, searchText);
+            expect(isFiltered).to.be.true;
+        });
+
+        it('When pattern does not contain second item - result should be true', function(){
+
+            searchText = 'url: 27 OR noturl';
+            var isFiltered = engine.filterBookmark(bookmark, searchText);
+            expect(isFiltered).to.be.true;
+        });
+
+        it('When search contains text and pattern with OR expression - result should be true', function(){
+
+            searchText = 'titl url: 27 OR 0:1';
+            var isFiltered = engine.filterBookmark(bookmark, searchText);
+            expect(isFiltered).to.be.true;
+        });
+
+        it('When search does not contain text and pattern with OR expression - result should be false', function(){
+
+            searchText = 'nottitl url: 27 OR 0:1';
+            var isFiltered = engine.filterBookmark(bookmark, searchText);
+            expect(isFiltered).to.be.false;
+        });
+    });
+
+    describe('When search tag pattern contains AND expression - will try to find both of the search', function(){
+        var bookmark, searchText;
+        
+        beforeEach(function(){
+
+            searchText = 'tag: tag2 AND tag1';
+            bookmark = {
+                title: 'title',
+                url: 'http://127:0:0:1',
+                tag:[{text: 'tag1'}, {text: 'tag2'}, {text: 'tag3'}]
+            };
+        });
+
+        it('When pattern contains both items - result should be true', function(){
+
+            var isFiltered = engine.filterBookmark(bookmark, searchText);
+            expect(isFiltered).to.be.true;
+        });
+
+        it('When pattern does not contain first item - result should be false', function(){
+
+            searchText = 'tag: nottag AND tag2';
+            var isFiltered = engine.filterBookmark(bookmark, searchText);
+            expect(isFiltered).to.be.false;
+        });
+
+        it('When pattern does not contain second item - result should be false', function(){
+
+            searchText = 'tag: tag2 AND nottag';
+            var isFiltered = engine.filterBookmark(bookmark, searchText);
+            expect(isFiltered).to.be.false;
+        });
+
+        it('When search contains text and pattern with AND expression - result should be true', function(){
+
+            searchText = 'titl tag: tag2 AND tag1';
+            var isFiltered = engine.filterBookmark(bookmark, searchText);
+            expect(isFiltered).to.be.true;
+        });
+    });
+
+    describe('When search tag pattern contains OR expression - will try to find one of the search', function(){
+        var bookmark, searchText;
+        
+        beforeEach(function(){
+
+            searchText = 'tag: tag2 OR tag1';
+            bookmark = {
+                title: 'title',
+                url: 'http://127:0:0:1',
+                tag:[{text: 'tag1'}, {text: 'tag2'}, {text: 'tag3'}]
+            };
+        });
+
+        it('When pattern contains both items - result should be true', function(){
+
+            var isFiltered = engine.filterBookmark(bookmark, searchText);
+            expect(isFiltered).to.be.true;
+        });
+
+        it('When pattern does not contain first item - result should be true', function(){
+
+            searchText = 'tag: nottag OR tag2';
+            var isFiltered = engine.filterBookmark(bookmark, searchText);
+            expect(isFiltered).to.be.true;
+        });
+
+        it('When pattern does not contain second item - result should be true', function(){
+
+            searchText = 'tag: tag2 OR nottag';
+            var isFiltered = engine.filterBookmark(bookmark, searchText);
+            expect(isFiltered).to.be.true;
+        });
+
+        it('When search contains text and pattern with OR expression - result should be true', function(){
+
+            searchText = 'titl tag: tag2 OR tag1';
+            var isFiltered = engine.filterBookmark(bookmark, searchText);
+            expect(isFiltered).to.be.true;
+        });
+
+        it('When search does not contain text and pattern with OR expression - result should be false', function(){
+
+            searchText = 'nottitl tag: tag2 OR tag1';
+            var isFiltered = engine.filterBookmark(bookmark, searchText);
+            expect(isFiltered).to.be.false;
+        });
+    });
 });

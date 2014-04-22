@@ -3,23 +3,23 @@ var karma = require('gulp-karma');
 var jshint = require('gulp-jshint');
 
 var paths = {
-	karmaConf  : './tests/karma.conf.js',
-	app : './source/ngBooleanSearch.js',
-	specs : './tests/unit/*.js'
+    karmaConf  : './tests/karma.conf.js',
+    app : './source/ngBooleanSearch.js',
+    specs : './tests/unit/*.js'
 }
 
 function runKarma(karmaConf, options){
-	var config = {
-		configFile: karmaConf,
-	    action: 'watch'
-	};
+    var config = {
+        configFile: karmaConf,
+        action: 'watch'
+    };
 
-	Object.keys(options).forEach(function(key) {
+    Object.keys(options).forEach(function(key) {
       config[key] = options[key];
     });
 
     return gulp.src(['no need to supply files because everything is in config file'])
-	    .pipe(karma(config).on('error', handleError));
+        .pipe(karma(config).on('error', handleError));
 }
 
 var handleError = function (err) {
@@ -28,25 +28,25 @@ var handleError = function (err) {
 };
 
 gulp.task('chrome', function  (argument) {
-	return runKarma(paths.karmaConf,{action: 'watch', browsers: ['Chrome'], singleRun: false, autoWatch: true});
+    return runKarma(paths.karmaConf,{action: 'watch', browsers: ['Chrome'], singleRun: false, autoWatch: true});
 });
 
 gulp.task('lint',function(){
-	return gulp.src([paths.app, paths.specs])
-		   .pipe(jshint())
-		   .pipe(jshint.reporter("default"))
-		   .on('error', handleError);
+    return gulp.src([paths.app, paths.specs])
+           .pipe(jshint())
+           .pipe(jshint.reporter("default"))
+           .on('error', handleError);
 });
 
 gulp.task('test',function(){
-	return runKarma(paths.karmaConf,{
-		action: 'run',
-	    autoWatch : false,
-	    singleRun : true});
+    return runKarma(paths.karmaConf,{
+        action: 'run',
+        autoWatch : false,
+        singleRun : true});
 });
 
 gulp.task('watch', function(){
-	gulp.watch([paths.app, paths.specs],['lint', 'test']);
+    gulp.watch([paths.app, paths.specs],['lint', 'test']);
 });
 
 gulp.task('default',['lint', 'test', 'watch']);
